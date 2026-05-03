@@ -1,0 +1,16 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/exadel
+    username: exadel
+    password: exadel
+
+  flyway:
+    enabled: false
+  application:
+    name: ms-order
+
+server:
+  port: 8081
+
+
+

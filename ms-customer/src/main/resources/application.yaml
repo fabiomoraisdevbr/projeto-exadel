@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ms-customer
+
+
+server:
+  port: 8082

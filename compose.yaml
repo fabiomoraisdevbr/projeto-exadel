@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: exadel-postgres
+    environment:
+      POSTGRES_DB: exadel
+      POSTGRES_USER: exadel
+      POSTGRES_PASSWORD: exadel
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: meu-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  redis:
+    image: redis:7-alpine
+    container_name: exadel-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: [ "redis-server"]
+
+volumes:
+  postgres_data:
+  redis_data:
