@@ -2,7 +2,7 @@
 
 CREATE TABLE customer (
                           id SERIAL PRIMARY KEY,
-                          nome VARCHAR(100) NOT NULL,
+                          customer_name VARCHAR(100) NOT NULL,
                           email VARCHAR(150) NOT NULL UNIQUE
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE orders (
 );
 
 
-INSERT INTO customer (nome, email) VALUES
+INSERT INTO customer (customer_name, email) VALUES
                                        ('João Silva', 'joao@email.com'),
                                        ('Maria Souza', 'maria@email.com');
 
