@@ -32,7 +32,8 @@ dependencies {
 	testAnnotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-data-redis-test")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis")
-	implementation("io.r2dbc:r2dbc-postgresql")
+	runtimeOnly("org.postgresql:postgresql")
+	runtimeOnly("org.postgresql:r2dbc-postgresql")
 }
 
 tasks.withType<Test> {
