@@ -1,6 +1,7 @@
 package fabiomorais.dev.br.ms_customer.service;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fabiomorais.dev.br.ms_customer.dto.CustomerResponse;
 import fabiomorais.dev.br.ms_customer.entity.CustomerEntity;
 import fabiomorais.dev.br.ms_customer.repository.CustomerRepository;
@@ -20,7 +21,10 @@ public class CustomerService {
     private ReactiveRedisTemplate<String, Object> redisTemplate;
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private RabbitmqTemplate rabbitTemplate;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     private static final String QUEUE_NAME = "order.total.request";
 
@@ -34,32 +38,24 @@ public class CustomerService {
 
         String redisKey = "customer::" + id;
 
-        // 🔥 Fluxo com Redis + Rabbit
-        return redisTemplate.opsForValue().get(redisKey)
+        return redisTemplate.opsForValue().get(redisKey) //get from redis
 
-                // 🔹 Se tiver no cache → retorna
-                .flatMap(Mono::just)
-
-                // 🔹 Se NÃO tiver no cache
-                .switchIfEmpty(
+                .map(obj -> objectMapper.convertValue(obj, CustomerResponse.class)) //return if hit
+                .switchIfEmpty( //send event if miss
                         customerRepository.findById(id)
                                 .switchIfEmpty(Mono.error(new RuntimeException("Customer not found")))
                                 .flatMap(customer -> {
-
-                                    // 📩 envia mensagem pro RabbitMQ
                                     rabbitTemplate.convertAndSend(QUEUE_NAME, id);
 
-                                    // 🔄 resposta imediata
                                     return Mono.just(new CustomerResponse(
                                             customer.getId(),
-                                            customer.getName(),
+                                            customer.getCustomer_name(),
                                             customer.getEmail(),
-                                            null // ainda não tem total
+                                            null,
+                                            "PENDING"
                                     ));
                                 })
                 );
-
-
     }
 
     private CustomerResponse toResponse(CustomerEntity entity) {
@@ -67,7 +63,7 @@ public class CustomerService {
                 entity.getId(),
                 entity.getCustomer_name(),
                 entity.getEmail(),
-                -1.0,
+                null,
                 "SUCCESS"
         );
     }
