@@ -1,3 +1,7 @@
+# diagrama
+
+<img width="1749" height="830" alt="image" src="https://github.com/user-attachments/assets/798af2d2-8809-487b-b99d-ec93c644b61e" />
+
 # 🧩 Monorepo - Microservices com Mensageria
 
 Este projeto é um **monorepo** contendo dois microsserviços desenvolvidos com foco em **mensageria assíncrona**, cache e comunicação entre serviços.
@@ -51,6 +55,4 @@ Responsável por:
 
 ---
 
-## diagrama
 
-<img width="1749" height="830" alt="image" src="https://github.com/user-attachments/assets/798af2d2-8809-487b-b99d-ec93c644b61e" />
