@@ -1,9 +1,9 @@
 package fabiomorais.dev.br.ms_customer.dto;
 
 public record CustomerResponse(
-        Integer id,
+        Long id,
         String name,
         String email,
-        double totalOrdersAmount,
+        Double totalOrdersAmount,
         String status // SUCCESS | PROCESSING
 ) {}
