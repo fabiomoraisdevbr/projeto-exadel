@@ -1,13 +1,25 @@
 spring:
+  cache:
+    type: REDIS
+    redis:
+      time-to-live: 60000
+  data:
+    redis:
+      host: localhost
+      port: 6379
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/exadel
     username: exadel
     password: exadel
-
+  application:
+    name: ms-customer
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   flyway:
     enabled: false
-  application:
-    name: ms-order
 
 server:
   port: 8081

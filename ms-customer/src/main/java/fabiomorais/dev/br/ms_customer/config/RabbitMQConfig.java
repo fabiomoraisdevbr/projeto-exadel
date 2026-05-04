@@ -1,6 +1,7 @@
 package fabiomorais.dev.br.ms_customer.config;
 
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,5 +19,10 @@ public class RabbitMQConfig {
     @Bean
     public Queue orderTotalResponseQueue() {
         return new Queue(QUEUE_RESPONSE, true);
+    }
+
+    @Bean
+    public JacksonJsonMessageConverter messageConverter() {
+        return new JacksonJsonMessageConverter();
     }
 }

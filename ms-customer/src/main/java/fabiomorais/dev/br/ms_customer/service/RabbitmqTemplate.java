@@ -1,5 +1,6 @@
 package fabiomorais.dev.br.ms_customer.service;
 
+import fabiomorais.dev.br.ms_customer.listener.OrderTotalMessageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -10,7 +11,7 @@ public class RabbitmqTemplate {
     @Autowired
     private  RabbitTemplate springRabbitTemplate;
 
-    public void convertAndSend(String queue, Object message) {
+    public void convertAndSend(String queue, OrderTotalMessageRequest message) {
 
         springRabbitTemplate.convertAndSend("", queue, message);
     }

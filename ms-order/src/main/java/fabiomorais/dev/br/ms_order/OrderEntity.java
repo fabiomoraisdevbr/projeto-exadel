@@ -12,5 +12,4 @@ public class OrderEntity {
     private Integer customerId;
     private Double total;
 
-    // getters/setters
 }

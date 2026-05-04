@@ -20,7 +20,7 @@ public class OrderTotalResponseListener {
 
 
     @RabbitListener(queues = "order.total.response")
-    public Mono<Void> consume(OrderTotalMessage message) {
+    public Mono<Void> consume(OrderTotalMessageResponse message) {
         Long id = message.getId();
         double totalAmount = message.getTotalAmount();
 
@@ -34,7 +34,6 @@ public class OrderTotalResponseListener {
                 ))
                 .flatMap(response -> customerRedisService.saveCustomerResponse(id, response))
                 .onErrorResume(error -> {
-                    // Tratar erro
                     return Mono.empty();
                 });
     }

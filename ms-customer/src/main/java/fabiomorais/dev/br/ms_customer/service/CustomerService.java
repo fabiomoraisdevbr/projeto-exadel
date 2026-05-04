@@ -4,6 +4,7 @@ package fabiomorais.dev.br.ms_customer.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fabiomorais.dev.br.ms_customer.dto.CustomerResponse;
 import fabiomorais.dev.br.ms_customer.entity.CustomerEntity;
+import fabiomorais.dev.br.ms_customer.listener.OrderTotalMessageRequest;
 import fabiomorais.dev.br.ms_customer.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
@@ -45,7 +46,10 @@ public class CustomerService {
                         customerRepository.findById(id)
                                 .switchIfEmpty(Mono.error(new RuntimeException("Customer not found")))
                                 .flatMap(customer -> {
-                                    rabbitTemplate.convertAndSend(QUEUE_NAME, id);
+                                    rabbitTemplate.convertAndSend(
+                                            QUEUE_NAME,
+                                            new OrderTotalMessageRequest(id)
+                                    );
 
                                     return Mono.just(new CustomerResponse(
                                             customer.getId(),
