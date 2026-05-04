@@ -5,5 +5,5 @@ public record CustomerResponse(
         String name,
         String email,
         Double totalOrdersAmount,
-        String status // SUCCESS | PROCESSING
+        String status
 ) {}

@@ -1,6 +1,5 @@
 package fabiomorais.dev.br.ms_order.listener;
 
-import fabiomorais.dev.br.ms_customer.listener.OrderTotalMessageResponse;
 import fabiomorais.dev.br.ms_order.OrderRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
