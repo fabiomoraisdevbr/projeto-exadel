@@ -1,6 +1,7 @@
 # diagrama
 
-<img width="1749" height="830" alt="image" src="https://github.com/user-attachments/assets/798af2d2-8809-487b-b99d-ec93c644b61e" />
+<img width="1683" height="714" alt="image" src="https://github.com/user-attachments/assets/73a3c51e-666f-42aa-bbf9-fd066cc3eee6" />
+
 
 # 🧩 Monorepo - Microservices com Mensageria
 
