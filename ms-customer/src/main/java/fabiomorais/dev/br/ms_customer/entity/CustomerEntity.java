@@ -9,7 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class CustomerEntity {
 
         @Id
-        private Integer id;
+        private Long id;
 
         private String customer_name;
         private String email;
