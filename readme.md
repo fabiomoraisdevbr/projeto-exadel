@@ -1,11 +1,12 @@
 # diagrama
 
-<img width="1683" height="714" alt="image" src="https://github.com/user-attachments/assets/73a3c51e-666f-42aa-bbf9-fd066cc3eee6" />
+<img width="1726" height="935" alt="Screenshot 2026-05-08 071304" src="https://github.com/user-attachments/assets/2884f494-f0fb-49fc-b523-31809b78d175" />
+
 
 
 # 🧩 Monorepo - Microservices com Mensageria
 
-Este projeto é um **monorepo** contendo dois microsserviços desenvolvidos com foco em **mensageria assíncrona**, cache e comunicação entre serviços.
+O desafio desse projeto era implementar uma arquitetura orientada a eventos, onde dois microsserviços se comunicam via eventos para dar uma resposta um request vindo do frontend. O endpoint da aplicação é o /customers/{id} , que também pode retornar o valor total dos pedidos do cliente. Ficou faltando implementar o expurgo do cache quando o cliente realiza um novo pedido.
 
 ---
 
